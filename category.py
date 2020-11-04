@@ -12,11 +12,10 @@ CSV_HEADERS = ['product_page_url', 'universal_product_code', 'title', 'price_inc
     'review_rating', 'image_url']
 
 
-def get_books_from_category(url):
+def get_books_from_category(url, category):
     response, pages = requests.get(url), []
 
     if response.ok:
-        category = url[51:].split('_')[0] # Récupère le nom de la catagory
         filename = 'books_' + category + '.csv'
 
         with open(filename, 'w', newline='', encoding='utf-8') as file:
@@ -53,7 +52,6 @@ def get_books_from_category(url):
                         # Utilise la solution d'encodage et décodage pour afficher correctement £ et autres
                         # caractères dans le fichier CSV (seul solution trouvé).
                         writer.writerow([d.encode('raw_unicode_escape').decode('utf-8') for d in data])
-
     else:
         print('Error loading page.')
 
