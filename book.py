@@ -8,7 +8,7 @@ NUMERATION_REVIEW_RATING = {'One': '1', 'Two': '2', 'Three': '3', 'Four': '4', '
 
 def get_book(url):
     response = requests.get(url)
-    
+
     if response.ok:
         soup = BeautifulSoup(response.text, 'html.parser')
         informations = soup.findAll('td') # Récupère les données dans la section "Product Information"
@@ -24,7 +24,7 @@ def get_book(url):
         category         = soup.find('ul', {'class': 'breadcrumb'}).findAll('li')[2].find('a').text
         review_rating    = NUMERATION_REVIEW_RATING[soup.find('p', {'class': 'star-rating'})['class'][1]]
         image_url        = 'http://books.toscrape.com/' + soup.find('img')['src'][6:]
-
+        print('     book: {}'.format(title.encode('raw_unicode_escape').decode('utf-8')), flush=True)
         return [url, upc, title, price_in_tax, price_ex_tax, number_available, description,
             category, review_rating, image_url]
 

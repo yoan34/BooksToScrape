@@ -22,8 +22,9 @@ def get_urls_categories():
 def scan_all_categories():
     urls = get_urls_categories()
 
-    for url in urls[:3]:
-        category = url[51:].split('_')[0] # Récupère le nom de la catagory
+    for url in urls:
+        category = url[51:].split('_')[0] # Récupère le nom de la catagor
+        print('Scan the category {}:'.format(category), flush=True)
         get_books_from_category(url, category)
     print('Scan finish, All files are available.')
 

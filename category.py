@@ -54,6 +54,7 @@ def get_books_from_category(url, category):
                         writer.writerow([d.encode('raw_unicode_escape').decode('utf-8') for d in data])
     else:
         print('Error loading page.')
+    print('\n', flush=True)
 
 
 # Tester le script sans l'importer
