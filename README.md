@@ -10,8 +10,8 @@ Création d'un environnement virtuel:</br>
 	<b>python -m venv env</b>
 
 Activation de l'environnement virtuel:</br>
-	console window: <b>.\env\scripts\activate</b>
-	autre: source env/scripts/activate</b>
+	console window: <b>.\env\scripts\activate</b></br>
+	autre: <b>source env/scripts/activate</b>
 
 Installation des dépendances du projet:</br>
 	<b>pip install -r requirements.txt</b>
