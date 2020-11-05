@@ -18,4 +18,4 @@ Installation des dépendances du projet:</br>
 
 Exécution du script qui va créer un dossier CSV avec les fichiers des différentes catégories et
 un dossier images qui va télécharger les images de chaque livre.</br>
-	<b>python scan_all_categories.py</b>
+	<b>python main.py</b>
