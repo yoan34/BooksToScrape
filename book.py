@@ -4,9 +4,11 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
+from images import get_image
+
 NUMERATION_REVIEW_RATING = {'One': '1', 'Two': '2', 'Three': '3', 'Four': '4', 'Five': '5'}
 
-def get_book(url):
+def get_book(url, category, n):
     response = requests.get(url)
 
     if response.ok:
@@ -24,6 +26,7 @@ def get_book(url):
         category         = soup.find('ul', {'class': 'breadcrumb'}).findAll('li')[2].find('a').text
         review_rating    = NUMERATION_REVIEW_RATING[soup.find('p', {'class': 'star-rating'})['class'][1]]
         image_url        = 'http://books.toscrape.com/' + soup.find('img')['src'][6:]
+        get_image(image_url, category, n)
         print('     book: {}'.format(title.encode('raw_unicode_escape').decode('utf-8')), flush=True)
         return [url, upc, title, price_in_tax, price_ex_tax, number_available, description,
             category, review_rating, image_url]

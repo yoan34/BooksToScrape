@@ -1,4 +1,5 @@
 import time
+import os
 import csv
 
 import requests
@@ -16,9 +17,12 @@ def get_books_from_category(url, category):
     response, pages = requests.get(url), []
 
     if response.ok:
-        filename = 'books_' + category + '.csv'
+        path = 'csv/books_' + category + '.csv'
+        # Création du dossier CSV qui réception les fichiers CSV si il existe pas.
+        if not os.path.exists('csv'):
+            os.mkdir('csv')
 
-        with open(filename, 'w', newline='', encoding='utf-8') as file:
+        with open(path, 'w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file) # Création d'un object ou l'on peut écrire/convertir des données en csv.
             writer.writerow(CSV_HEADERS) # On ajoute les en-têtes en première ligne du fichier csv.
 
@@ -45,9 +49,9 @@ def get_books_from_category(url, category):
                     books = soup.findAll('li', {'class': 'col-xs-6 col-sm-4 col-md-3 col-lg-3'})
 
                     # on récupère le lien de chaque livre et leurs informations souhaitées.
-                    for book in books:
+                    for n, book in enumerate(books):
                         link = 'http://books.toscrape.com/catalogue' +  book.find('a')['href'][8:]
-                        data = get_book(link)
+                        data = get_book(link, category, n)
                                     
                         # Utilise la solution d'encodage et décodage pour afficher correctement £ et autres
                         # caractères dans le fichier CSV (seul solution trouvé).
