@@ -4,7 +4,7 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
-from category import get_books_from_category
+from tools.category import get_books_from_category
 
 def get_urls_categories():
     response = requests.get('http://books.toscrape.com/')

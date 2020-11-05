@@ -4,7 +4,7 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
-from images import get_image
+from .images import get_image
 
 NUMERATION_REVIEW_RATING = {'One': '1', 'Two': '2', 'Three': '3', 'Four': '4', 'Five': '5'}
 

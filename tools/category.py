@@ -5,7 +5,7 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
-from book import get_book
+from .book import get_book
 
 
 CSV_HEADERS = ['product_page_url', 'universal_product_code', 'title', 'price_including_tax',
